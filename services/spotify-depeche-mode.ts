@@ -1,19 +1,17 @@
 export default async function getDepecheModeAlbums() {
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization:
-      "Bearer BQA-zIXP7WEX32VeX77vnv2Y_PBZLWmzZrFkgbKE8ge8s4ZJxaFB8KsrpcG5s0KMdFKRfA-dJFf22ducNr0",
-  };
+  var myHeaders = new Headers();
 
-  const requestOptions: RequestInit = {
+  var requestOptions: RequestInit = {
     method: "GET",
-    headers,
+    headers: myHeaders,
     redirect: "follow",
   };
 
   return fetch(
-    "https://api.spotify.com/v1/search?q=depeche%20mode&type=album&limit=50",
-    /* "https://api.spotify.com/v1/artists/762310PdDnwsDxAQxzQkfX/albums", */
+    "https://accounts.spotify.com/authorize?client_id=bf1abd332a634d2fb0709bea2401e6eb&response_type=code&redirect_uri=http%3A%2F%2Flocalhost:3000&show_dialog=true",
     requestOptions
-  );
+  )
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
 }

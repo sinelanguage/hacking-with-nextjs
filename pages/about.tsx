@@ -1,26 +1,17 @@
 import React from "react";
 import getDepecheModeAlbums from "../services/spotify-depeche-mode";
 
-export async function getStaticProps() {
-  const res = await getDepecheModeAlbums();
-  const albums = await res.json();
-  return {
-    props: {
-      albums,
-    },
-  };
-}
+// export async function getStaticProps() {
+//   getDepecheModeAlbums();
+//   return {
+//     props: {},
+//   };
+// }
 
-export default function About({
-  albums: {
-    albums: { items },
-  },
-}) {
+export default function About() {
   return (
     <div>
-      {items.map(({ name }, i: number) => (
-        <p key={i}>{name}</p>
-      ))}
+      <h1>Depeche Mode albums from Spotify</h1>
     </div>
   );
 }
